@@ -130,7 +130,7 @@ plt.title('Distribution of Past Year Income and Increased Discussion About Cervi
 plt.show()
 
 #Section 1 Question 9 No
-new_df = hpvdata[hpvdata['sec1_q9'] != -999] 
+new_df = hpvdata[hpvdata['sec1_q9'] != -999]
 low_attitude=new_df[new_df['sec5_q61']<=np.nanmedian(new_df['sec5_q61'])]
 plt.hist(low_attitude['sec1_q9'], bins = 6, edgecolor = 'black')
 residenceAreaLow = ('City (Urban)', 'Trading Center', 'Village (Rural)')
