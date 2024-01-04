@@ -1,5 +1,5 @@
 **Project: HPV Vaccine Allocation Statistical Tests**
 
-**Programmers: Sanya Khattar, Suyanpeng Zhang**
+**Contributors: Sanya Khattar, Suyanpeng Zhang, Dr. Sze-chuan Suen, Dr. Corinna Moucheraud**
 
-**Documentation: Weeks 4-17 of the fall 2023 semester; incoming spreadsheets and visuals.**
+**Documentation: Weeks 2-17 of the fall 2023 semester.**
