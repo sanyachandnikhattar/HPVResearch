@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt #use anaconda environment to get this to work
 import numpy as np
 import pandas as pd #importing a library
+#hi
 
 #Week 4
 
