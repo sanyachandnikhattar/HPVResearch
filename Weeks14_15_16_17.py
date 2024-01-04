@@ -411,7 +411,7 @@ Group2q11_6 = new_df[new_df['sec1_q11_6'] == 1] #yes, can use social media apps
 #checking variance
 print (np.nanvar(Group1q11_6['HPV_VAX_attitu_s35'])) #34.5155859375
 print (np.nanvar(Group2q11_6['HPV_VAX_attitu_s35'])) #38.53278824489796
-#variance not equal (~4 difference, >1 differenc3e)
+#variance not equal (~4 difference, >1 difference)
 print ("\n")
 res2 = stats.ttest_ind(Group1q11_6['HPV_VAX_attitu_s35'].dropna(), Group2q11_6['HPV_VAX_attitu_s35'].dropna(), equal_var=False)
 #group 1 (cannot use social media apps) against group 2 (can use social media apps)
@@ -426,7 +426,18 @@ print(sec1q11_7Median)
 sec1q11_7Mean = new_df['sec1_q11_7'].mean(numeric_only=True)
 print ("Section 1 Question 11 #7 Mean: ")
 print (sec1q11_7Mean)
-
+print ("\n")
+Group1q11_7 = new_df[new_df['sec1_q11_7'] == 0] #no, cannot watch videos
+Group2q11_7 = new_df[new_df['sec1_q11_7'] == 1] #yes, can watch videos
+#checking variance
+print (np.nanvar(Group1q11_7['HPV_VAX_attitu_s35'])) #37.98615510204081
+print (np.nanvar(Group2q11_7['HPV_VAX_attitu_s35'])) #38.04263250405625
+#variance equal (~0.06 difference, <1 difference)
+print ("\n")
+res2 = stats.ttest_ind(Group1q11_7['HPV_VAX_attitu_s35'].dropna(), Group2q11_7['HPV_VAX_attitu_s35'].dropna(), equal_var = True)
+#group 1 (cannot watch videos) against group 2 (can watch videos)
+print (res2)
+#0.25070767055934357 is p-value --> statistically insignificant (p>0.05)
 print ("\n")
 
 #Section 1 Question 11 #8
@@ -437,5 +448,16 @@ print(sec1q11_8Median)
 sec1q11_8Mean = new_df['sec1_q11_8'].mean(numeric_only=True)
 print ("Section 1 Question 11 #8 Mean: ")
 print (sec1q11_8Mean)
-
+print ("\n")
+Group1q11_8 = new_df[new_df['sec1_q11_8'] == 0] #no, listen to audio files
+Group2q11_8 = new_df[new_df['sec1_q11_8'] == 1] #yes, can listen to audio files
+#checking variance
+print (np.nanvar(Group1q11_8['HPV_VAX_attitu_s35'])) #34.52846880907372
+print (np.nanvar(Group2q11_8['HPV_VAX_attitu_s35'])) #39.091738744647195
+#variance not equal (difference ~=4.5, >1)
+print ("\n")
+res2 = stats.ttest_ind(Group1q11_8['HPV_VAX_attitu_s35'].dropna(), Group2q11_8['HPV_VAX_attitu_s35'].dropna(), equal_var = False)
+#group 1 (cannot watch videos) against group 2 (can watch videos)
+print (res2)
+#0.7324055447568049 is p-value --> statistically insignificant (p>0.05)
 print ("\n")
