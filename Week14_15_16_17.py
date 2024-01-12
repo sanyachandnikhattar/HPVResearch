@@ -38,13 +38,16 @@ Flag = True
 
 #Section 1 Question 5 Questions 1, 2, 3, 4
 new_df = hpvdata[hpvdata['sec1_q5'] != -999]
+
 sec1q5Median = new_df['sec1_q5'].median(numeric_only=True)
 print ("Section 1 Question 5 Median: ")
 print(sec1q5Median)
 sec1q5Mean = new_df['sec1_q5'].mean(numeric_only=True)
 print ("Section 1 Question 5 Mean: ")
 print (sec1q5Mean)
-#print(new_df['sec1_q5'].value_counts())
+print ("\n")
+print(new_df['sec1_q5'].value_counts())
+print ("\n")
 Group1 = new_df[new_df['sec1_q5']==1]
 Group2 = new_df[new_df['sec1_q5']==2]
 Group3 = new_df[new_df['sec1_q5']==3]
@@ -81,6 +84,9 @@ print(sec1q6Median)
 sec1q6Mean = new_df['sec1_q6'].mean(numeric_only=True) #exclude negative values with new_df
 print ("Section 1 Question 6 Mean: ")
 print (sec1q6Mean)
+print ("\n")
+print(new_df['sec1_q6'].value_counts())
+print ("\n")
 #needs multiple t-tests
 Group1q6 = new_df[new_df['sec1_q6']==1] #full-time
 Group2q6 = new_df[new_df['sec1_q6']==2] #part-time
