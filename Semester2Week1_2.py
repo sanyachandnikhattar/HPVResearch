@@ -482,3 +482,24 @@ res2 = stats.ttest_ind(Group1q11_8['HPV_VAX_attitu_s35'].dropna(), Group2q11_8['
 print (res2)
 #0.7324055447568049 is p-value --> statistically insignificant (p>0.05)
 print ("\n")
+
+#End of Week 1 Work
+
+#Beginning of Week 2 Work
+#Correlation Analysis:
+#   for loop against all: 
+#       1. Section 1 Questions
+#       2. Section 6 Questions
+#       3. Section 8 Questions
+#       4. Section 11 Questions
+#**find top 10 variables with highest correlation to HPV VAX ATTITU s35**
+
+#pseudocode: section 1 question 4 correlation against HPV VAX attitu s35
+#x = np.arange(len(new_df['sec1q_4'])) 
+#error 
+#Traceback (most recent call last.. KeyError: 'sec1q_4' --> how to fix? 
+
+#how do we deal with NaN
+#how do we automate
+
+#for (sec1q4 --> sec1q11_8)
