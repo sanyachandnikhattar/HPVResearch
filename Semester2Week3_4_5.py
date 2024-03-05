@@ -8,16 +8,15 @@ from tabulate import tabulate #for tables
 
 file_path = 'hpvdata.csv'
 hpvdata = pd.read_csv(file_path, low_memory = False)
-hpvdata = hpvdata.dropna(subset=['HPV_VAX_attitu_s35']) #to debyg
+hpvdata = hpvdata.dropna(subset=['HPV_VAX_attitu_s35', 'sec6_q67', 'sec8_q89', 'sec11_q156', 'sec11_q157', 'sec11_q160']) #to debug
+#excluding the correlation analysis for: (1) sec11_q170, sec11_q159
 hpvdata.describe()
 new_df = hpvdata
 
-print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'],hpvdata['sec1_q4']))
 #pseudocode: section 1 question 4 correlation against HPV VAX attitu s35
 #x = np.arange(len(new_df['sec1q_4'])) 
 #error 
 #Traceback (most recent call last.. KeyError: 'sec1q_4' --> how to fix? 
-
 
 #Beginning of Week 2 Work
 #Correlation Analysis:
@@ -32,84 +31,196 @@ print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'],hpvdata['sec1_q4']))
 #how do we automate
 
 #for (sec1q4 --> sec1q11_8)
+print ("Section 1 Questions")
+#sec1q4
+x = np.arange(len(new_df['sec1_q4']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q4'].dropna()))
+print ("\n")
 
 #sec1q5
-#hpvdata_cleaned = hpvdata.dropna()
-#x = np.arange(len(new_df['sec1_q5']))
-#print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q5'].dropna())) #how do we drop nan?
-#method 1: column numbers in array, iterate over array/list
-#method 2: automatically get the data frame everytime you are going through the CSV file 
-# y should be the section 1 question 4 relative to HPV VAX ATTITU s35
+x = np.arange(len(new_df['sec1_q5']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q5'].dropna()))
+print ("\n")
 
 #sec1q6
-#x = np.arange(len(new_df['sec1_q6'])) #length because pandas wants to deal with a singular(?) amount
-#np.set_printoptions(precision=8)
-#print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q6']))
+x = np.arange(len(new_df['sec1_q6']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q6'].dropna()))
+print ("\n")
 
 #sec1q7
-#new_df = hpvdata[hpvdata['sec1_q7'] != -999]
-#print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q7'])) 
-#why still printing nan? don't see nan in the csv file
-
-
-# Replace -999 with NaN in the 'sec1_q7' column
-#hpvdata['sec1_q7'].replace(-999, np.nan, inplace=True)
-# Drop rows with NaN values in 'sec1_q7'
-#hpvdata_cleaned = hpvdata.dropna(subset=['sec1_q7'])
-# Calculate correlation coefficient
-#correlation = np.corrcoef(hpvdata_cleaned['HPV_VAX_attitu_s35'], hpvdata_cleaned['sec1_q7'])
-#print(correlation)
-
-
-# Convert NaN values to a string with desired precision
-#correlation_str = np.array_str(correlation, precision=4)
-#print(correlation_str)
+print ("sec1q7, MISSED")
+x = np.arange(len(new_df['sec1_q7']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q7'].dropna()))
+print ("\n")
 
 #sec1q8
 x = np.arange(len(new_df['sec1_q8']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q8'].dropna()))
+print ("\n")
 
 #sec1q9
 x = np.arange(len(new_df['sec1_q9']))
 print(np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q9']))
+print ("\n")
 
 #sec1q10
 x = np.arange(len(new_df['sec1_q10']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q10']))
+print ("\n")
 
 #sec1q11_1
 x = np.arange(len(new_df['sec1_q11_1']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_1']))
+print ("\n")
 
 #sec1q11_2
 x = np.arange(len(new_df['sec1_q11_2']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_2']))
+print ("\n")
 
 #sec1q11_3
 x = np.arange(len(new_df['sec1_q11_3']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_3']))
+print ("\n")
 
 #sec1q11_4
 x = np.arange(len(new_df['sec1_q11_4']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_4']))
+print ("\n")
 
 #sec1q11_5
 x = np.arange(len(new_df['sec1_q11_5']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_5']))
+print ("\n")
 
 #sec1q11_6
 x = np.arange(len(new_df['sec1_q11_6']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_6']))
+print ("\n")
 
 #sec1q11_7
 x = np.arange(len(new_df['sec1_q11_7']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_7']))
+print ("\n")
 
 #sec1q11_8
 x = np.arange(len(new_df['sec1_q11_8']))
 print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec1_q11_8']))
+print ("\n")
 
 #2 1's in matrix: correlation of variable with itself
 #value on diagonal: correlation between a and b = correlation between b and a
 #value close to 0 --> no correlation; closer to 1: high positive correlation
 #close to -1: high negative correlation
+
+#for (sec6_q67 --> sec6_q76)
+#note: sec6_q67 --> sec6_q74 one section, sec6_q75 --> sec6_q76 second section
+
+
+print ("Section 6 Questions:") #showing nan again
+
+#sec6_q67
+x = np.arange(len(new_df['sec6_q67']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q67']))
+print ("\n")
+
+#sec6_q68
+x = np.arange(len(new_df['sec6_q68']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q68']))
+print ("\n")
+
+#sec6_q69
+x = np.arange(len(new_df['sec6_q69']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q69']))
+print ("\n")
+
+#sec6_q70
+x = np.arange(len(new_df['sec6_q70']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q70']))
+print ("\n")
+
+#sec6_q71
+x = np.arange(len(new_df['sec6_q71']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q71']))
+print ("\n")
+
+#sec6_q72
+x = np.arange(len(new_df['sec6_q72']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q72']))
+print ("\n")
+
+#sec6_q73
+x = np.arange(len(new_df['sec6_q73']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q73'])) #typo
+print ("\n")
+
+#sec6_q74
+x = np.arange(len(new_df['sec6_q74']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q74']))
+print ("\n")
+print ("\n")
+#end of group in baseline spreadsheet
+
+#sec6_q75
+x = np.arange(len(new_df['sec6_q75']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q75']))
+print ("\n")
+
+#sec6_q76
+x = np.arange(len(new_df['sec6_q75']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec6_q76']))
+print ("\n")
+print ("\n")
+
+#section 8 questions — sec8q89 --> sec8q93
+print ("Section 8 Questions")
+x = np.arange(len(new_df['sec8_q89']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec8_q89']))
+print ("\n")
+
+x = np.arange(len(new_df['sec8_q90']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec8_q90']))
+print ("\n")
+
+x = np.arange(len(new_df['sec8_q91']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec8_q91']))
+print ("\n")
+
+x = np.arange(len(new_df['sec8_q92']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec8_q92']))
+print ("\n")
+
+x = np.arange(len(new_df['sec8_q93']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec8_q93']))
+print ("\n")
+
+#section 11 questions - sec11q156 --> sec11q170
+print ("Section 11 Questions")
+x = np.arange(len(new_df['sec11_q156']))
+print (len(new_df['sec11_q156']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q156']))
+print ("\n")
+
+x = np.arange(len(new_df['sec11_q157']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q157']))
+print ("\n")
+
+x = np.arange(len(new_df['sec11_q158']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q158']))
+print ("\n")
+
+x = np.arange(len(new_df['sec11_q159']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q159']))
+print ("\n")
+
+# COVID QUESTIONS — LAST TWO QUESTIONS IN SURVEY
+x = np.arange(len(new_df['sec11_q160']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q160']))
+print ("\n")
+
+x = np.arange(len(new_df['sec11_q170']))
+print (np.corrcoef(hpvdata['HPV_VAX_attitu_s35'], hpvdata['sec11_q170']))
+print ("\n")
+#note: sec11_q160, sec11_q170 are COVID sections
+
+print (len(hpvdata)) #1032 , then 1017
