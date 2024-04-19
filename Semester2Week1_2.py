@@ -6,7 +6,7 @@ import scipy.stats as stats
 from tabulate import tabulate #for tables
 #hi
 
-file_path = 'hpvdata.csv'
+file_path = '../../hpvdata.csv'
 hpvdata = pd.read_csv(file_path, low_memory = False)
 hpvdata.describe()
 new_df = hpvdata

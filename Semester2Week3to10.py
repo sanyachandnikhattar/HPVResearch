@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd #importing pandas library
 from scipy.stats import ttest_ind #ttest
 import scipy.stats as stats
-from tabulate import tabulate #for tables
-#hi
 
 file_path = 'hpvdata.csv'
 hpvdata = pd.read_csv(file_path, low_memory = False)
@@ -13,18 +11,12 @@ hpvdata = hpvdata.dropna(subset=['HPV_VAX_attitu_s35', 'sec6_q67', 'sec8_q89', '
 hpvdata.describe()
 new_df = hpvdata
 
-#pseudocode: section 1 question 4 correlation against HPV VAX attitu s35
-#x = np.arange(len(new_df['sec1q_4'])) 
-#error 
-#Traceback (most recent call last.. KeyError: 'sec1q_4' --> how to fix? 
-
-#Beginning of Week 2 Work
 #Correlation Analysis:
 #   for loop against all: 
 #       1. Section 1 Questions (DONE)
-#       2. Section 6 Questions
-#       3. Section 8 Questions
-#       4. Section 11 Questions
+#       2. Section 6 Questions (DONE)
+#       3. Section 8 Questions (DONE)
+#       4. Section 11 Questions (DONE)
 #**find top 10 variables with highest correlation to HPV VAX ATTITU s35**
 
 #how do we deal with NaN
