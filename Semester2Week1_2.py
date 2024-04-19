@@ -23,7 +23,6 @@ new_df = hpvdata[hpvdata['HPV_VAX_attitu_s35'] != -999]
 Group1Male= new_df[new_df['sec1_q4']==1]
 Group2Female = new_df[new_df['sec1_q4']==2]
 print (np.nanvar(Group1Male['HPV_VAX_attitu_s35'])) #finding variance for male 
-#printing everything bet section 1 question 4, dropna doesn't actually drop NaN
 print (np.nanvar(Group2Female['HPV_VAX_attitu_s35'])) #finding variance for female
 #equal variance depends on personal opinion — is variance small or variance large --> if under 1 of difference, variance not that large
 #keep rules consistent throughout analysis: if differentiating by decimal place, keep that throughout
@@ -46,7 +45,7 @@ sec1q5Mean = new_df['sec1_q5'].mean(numeric_only=True)
 print ("Section 1 Question 5 Mean: ")
 print (sec1q5Mean)
 print ("\n")
-print(new_df['sec1_q5'].value_counts())
+#print(new_df['sec1_q5'].value_counts()) #checking correct df
 print ("\n")
 Group1 = new_df[new_df['sec1_q5']==1]
 Group2 = new_df[new_df['sec1_q5']==2]
@@ -56,6 +55,8 @@ print (np.nanvar(Group1['HPV_VAX_attitu_s35'])) #36.05705497885428
 print (np.nanvar(Group2['HPV_VAX_attitu_s35'])) #35.024184117687525
 print (np.nanvar(Group3['HPV_VAX_attitu_s35'])) #40.3724509220702
 print (np.nanvar(Group4['HPV_VAX_attitu_s35'])) #31.504805843906187
+
+#t-tests sec1_q5
 #run 6 t-tests: 1 and 2, 1 and 3, 1 and 4, 2 and 3, 2 and 4, 3 and 4 --> Upper Triangular Matrix
 res2 = stats.ttest_ind(Group1['HPV_VAX_attitu_s35'].dropna(), Group2['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 2
 res3 = stats.ttest_ind(Group1['HPV_VAX_attitu_s35'].dropna(), Group3['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 3
@@ -85,7 +86,7 @@ sec1q6Mean = new_df['sec1_q6'].mean(numeric_only=True) #exclude negative values 
 print ("Section 1 Question 6 Mean: ")
 print (sec1q6Mean)
 print ("\n")
-print(new_df['sec1_q6'].value_counts())
+#print(new_df['sec1_q6'].value_counts())
 print ("\n")
 #needs multiple t-tests
 Group1q6 = new_df[new_df['sec1_q6']==1] #full-time
@@ -103,7 +104,7 @@ print (np.nanvar(Group4q6['HPV_VAX_attitu_s35'])) #38.17392045454546
 print (np.nanvar(Group5q6['HPV_VAX_attitu_s35'])) #37.422335600907026
 print (np.nanvar(Group6q6['HPV_VAX_attitu_s35'])) #33.630232096806175
 
-#Printing the T-Tests of All S1Q6 Questions Against One Another
+#sec1_q6 t-tests (upper triangular matrix)
 res2 = stats.ttest_ind(Group1q6['HPV_VAX_attitu_s35'].dropna(), Group2q6['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 2
 res3 = stats.ttest_ind(Group1q6['HPV_VAX_attitu_s35'].dropna(), Group3q6['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 3
 res4 = stats.ttest_ind(Group1q6['HPV_VAX_attitu_s35'].dropna(), Group4q6['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 4
@@ -159,7 +160,7 @@ sec1q7Mean = new_df['sec1_q7'].mean(numeric_only=True)
 print ("Section 1 Question 7 Mean: ") #exclude negative values with new_df
 print (sec1q7Mean)
 print ("\n") #space before looking at value counts + variance
-print (new_df['sec1_q7'].value_counts())
+#print (new_df['sec1_q7'].value_counts())
 print ("\n")
 Group1q7 = new_df[new_df['sec1_q7']==1] #single
 Group2q7 = new_df[new_df['sec1_q7']==2] #cohabitating
@@ -171,6 +172,8 @@ print (np.nanvar(Group2q7['HPV_VAX_attitu_s35'])) #12.666666666666666
 print (np.nanvar(Group3q7['HPV_VAX_attitu_s35'])) #38.21758692517224
 print (np.nanvar(Group4q7['HPV_VAX_attitu_s35'])) #45.625
 print (np.nanvar(Group5q7['HPV_VAX_attitu_s35'])) #32.13811728395061
+
+#t-tests sec1_q7
 res2 = stats.ttest_ind(Group1q7['HPV_VAX_attitu_s35'].dropna(), Group2q7['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 2
 res3 = stats.ttest_ind(Group1q7['HPV_VAX_attitu_s35'].dropna(), Group3q7['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 3
 res4 = stats.ttest_ind(Group1q7['HPV_VAX_attitu_s35'].dropna(), Group4q7['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 4
@@ -210,9 +213,8 @@ print(sec1q8Median)
 sec1q8Mean = new_df['sec1_q8'].mean(numeric_only=True) #exclude negative values with new_df
 print ("Section 1 Question 8 Mean: ")
 print (sec1q8Mean)
-print ("\n") #space before looking at value counts + variance
-print (new_df['sec1_q8'].value_counts())
-print ("\n")
+#print (new_df['sec1_q8'].value_counts())
+print ("\n") #space before looking at variance
 Group1q8 = new_df[new_df['sec1_q8']==1] #allowed savings
 Group2q8 = new_df[new_df['sec1_q8']==2] #little savings
 Group3q8 = new_df[new_df['sec1_q8']==3] #only met savings
@@ -223,6 +225,8 @@ print (np.nanvar(Group2q8['HPV_VAX_attitu_s35'])) #43.09061224489796
 print (np.nanvar(Group3q8['HPV_VAX_attitu_s35'])) #36.79488990279706
 print (np.nanvar(Group4q8['HPV_VAX_attitu_s35'])) #39.85220310085779
 print (np.nanvar(Group5q8['HPV_VAX_attitu_s35'])) #35.6592923553719
+
+#t-tests sec1_q8
 res2 = stats.ttest_ind(Group1q8['HPV_VAX_attitu_s35'].dropna(), Group2q8['HPV_VAX_attitu_s35'].dropna(), equal_var = True) #group 1 against 2
 res3 = stats.ttest_ind(Group1q8['HPV_VAX_attitu_s35'].dropna(), Group3q8['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 3
 res4 = stats.ttest_ind(Group1q8['HPV_VAX_attitu_s35'].dropna(), Group4q8['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 4
@@ -273,6 +277,8 @@ print (np.nanvar(Group2q9['HPV_VAX_attitu_s35'])) #43.09061224489796
 print (np.nanvar(Group3q9['HPV_VAX_attitu_s35'])) #36.79488990279706
 print ("\n")
 #none of the groups' variance absolute value differences <1, so equal variance false
+
+#t-tests sec1_q9
 res2 = stats.ttest_ind(Group1q9['HPV_VAX_attitu_s35'].dropna(), Group2q9['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 2
 res3 = stats.ttest_ind(Group1q9['HPV_VAX_attitu_s35'].dropna(), Group3q9['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 1 against 3
 res2_3 = stats.ttest_ind(Group2q9['HPV_VAX_attitu_s35'].dropna(), Group3q9['HPV_VAX_attitu_s35'].dropna(), equal_var = False) #group 2 against 3
