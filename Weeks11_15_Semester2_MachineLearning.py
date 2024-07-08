@@ -4,22 +4,24 @@ import pylab as pl
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression #importing library for Logistic Regression
-from sklearn.svm import SVC #importing library for SVC
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC #importing library for SVC --> SVM
+from sklearn.tree import DecisionTreeClassifier #importing library for Decision Tree
 from sklearn.metrics import roc_auc_score, roc_curve #importing for AuC
 from sklearn.metrics import confusion_matrix #importing for confusion matrix
 import pickle
+import seaborn as sns #to plot logistic regression curve
+from scipy.interpolate import make_interp_spline #for smoothing to make logistic regression curve
 
 with open("/Users/sanyakhattar/Desktop/HPV/df_results_network2.pkl", "rb") as file:
     data = pickle.load(file)
 
 print(len(data))
 
-#print(data.head())
+print(data.head())
 
 selected_column = 'Selected' #what is the selected column?
-X = data.drop(columns=[selected_column]) #make X the 480ish 0's ?
-Y = data[selected_column] #make Y the 20ish 1's?
+X = data.drop(columns=[selected_column])
+Y = data[selected_column]
 
 new_df = data #pickle and CSV are same data frame
 #check: is this the way to make pickle and CSV the same data frame?
@@ -30,9 +32,9 @@ new_df = data #pickle and CSV are same data frame
 #multiple columns; difficult 
 
 #only train data w/ training data set, test with test data set
-X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size = 0.2, stratify = Y, random_state = 42)
-#Y is 20 1's
-#X is 480ish 0's
+X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size = 0.1, stratify = Y, random_state = 42)
+#Y is 20 1's (node/person selected)
+#X is 480ish 0's (node/person not selected)
 #0.2 testing
 #0.8 training
 
@@ -59,6 +61,44 @@ dt_model.fit(X_Train, Y_Train) #train the decision tree model
 #Making predictions/probabilities for Logistic Regression and SVM (different from Decision Trees)
 y_prob_logistic = logistic_model.predict_proba(X_Test)[:, 1]#probabilities for positive class
 print (y_prob_logistic)
+
+#X_Y_Spline = make_interp_spline(X_Train['Attitude'], Y_Train)
+#X_ = np.linspace(X_Train['Attitude'].min(), X_Train['Attitude'].max(), 509)
+#Y_ = X_Y_Spline(X_)
+#plt.plot(X_, Y_)
+
+# Example DataFrame setup
+data = pd.DataFrame({
+    'Attitude': X_Train['Attitude'],
+    'Probability': Y_Train
+})
+
+# Grouping by 'Attitude' and averaging the 'Probability'
+grouped_data = data.groupby('Attitude').mean().reset_index()
+
+# Now, 'grouped_data' has unique 'Attitude' values with their average 'Probability'
+X_unique = grouped_data['Attitude']
+Y_avg = grouped_data['Probability']
+
+# Creating the spline
+spline = make_interp_spline(X_unique, Y_avg)
+
+# Generating a range of x values for creating a smooth curve
+X_smooth = np.linspace(X_unique.min(), X_unique.max(), 300)
+Y_smooth = spline(X_smooth)
+
+# Plotting the smooth curve
+plt.figure(figsize=(10, 6))
+plt.scatter(X_Train['Attitude'], Y_Train, color = 'black', label = 'Original Data') #X_Train and Y_Train is the same across all 3 models
+plt.plot(X_smooth, Y_smooth, label='Fitted Spline', color='red')
+
+plt.title("Logistic Regression Spline and Scatterplot")
+plt.xlabel("Attitude")
+plt.ylabel("Predicted Probability for Positive Class")
+plt.show()
+
+
+
 y_prob_svm = svm_model.predict_proba(X_Test)[:, 1] #probabilities for positive class
 print (y_prob_svm)
 
@@ -165,3 +205,12 @@ for i, v in enumerate(importance_dt):
     #network feature --> "                                   "
 #5. NumLinkstoMinus: 0.23065...
     #how many people you are connected with that have negative opinion (doesn't assume anything about you/base node)
+    
+#Generation of Graphs for CURVE Poster
+
+#Objective 1: Heat Map for Correlation Analysis
+#completed in Excel
+
+#Objective 2: Logistic Regression Visualization (first priority)
+#used matplotlib
+
